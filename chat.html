@@ -9,31 +9,32 @@
 </head>
 <body class="bg-gray-100">
 
-<div id="chat-container" class="flex items-center justify-center min-h-screen w-full hidden">
-    <!-- Main Chat Container -->
-    <div id="chat-box" class="w-full max-w-full bg-white rounded-lg shadow-lg overflow-hidden h-screen flex flex-col">
-        <!-- Header Section -->
-        <div id="header" class="flex items-center justify-between p-4 border-b">
-            <div id="logo-section" class="flex items-center space-x-2">
-                <img src="data:image/jpeg;base64,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" alt="Logo" class="w-8 h-8">
-                <h2 class="text-xl font-semibold text-gray-800">Chat with Us</h2>
+    <div id="chat-container" class="flex items-center justify-center min-h-screen w-full hidden">
+        <!-- Main Chat Container -->
+        <div id="chat-box" class="w-full max-w-full bg-white rounded-lg shadow-lg overflow-hidden h-screen flex flex-col">
+            <!-- Header Section -->
+            <div id="header" class="flex items-center justify-between p-4 border-b">
+                <div id="logo-section" class="flex items-center space-x-2">
+                    <img src="data:image/jpeg;base64,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" alt="Logo" class="w-8 h-8">
+                    <h2 class="text-xl font-semibold text-gray-800">Chat with Us</h2>
+                </div>
+                <!-- Trash Bin Icon (Delete Button) -->
+                <button id="delete-btn" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <i class="fas fa-trash-alt text-xl"></i>
+                </button>
             </div>
-            <!-- Replace cross icon with trash bin icon -->
-            <button id="delete-btn" class="text-gray-500 hover:text-gray-700 focus:outline-none">
-                <i class="fas fa-trash-alt text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Chat Messages -->
-        <div id="chat-messages" class="flex-grow space-y-4 overflow-y-auto p-2 bg-gray-50 rounded-lg"></div>
-
-        <!-- Input and Send Button -->
-        <div class="flex items-center space-x-4 p-4 border-t bg-white">
-            <input type="text" id="user-input" style="border:2px solid black" placeholder="Type a message..." class="flex-grow p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
-            <button id="send-btn" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none">Send</button>
+    
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-grow space-y-4 overflow-y-auto p-2 bg-gray-50 rounded-lg"></div>
+    
+            <!-- Input and Send Button -->
+            <div class="flex items-center space-x-4 p-4 border-t bg-white">
+                <input type="text" id="user-input" style="border:2px solid black" placeholder="Type a message..." class="flex-grow p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+                <button id="send-btn" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none">Send</button>
+            </div>
         </div>
     </div>
-</div>
+    
 
 <!-- Modal for Confirmation -->
 <div id="delete-modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 hidden">
