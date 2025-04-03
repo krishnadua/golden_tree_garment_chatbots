@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+
+<div id="chat-container" class="flex items-center justify-center min-h-screen w-full hidden">
+    <!-- Main Chat Container -->
+    <div id="chat-box" class="w-full max-w-full bg-white rounded-lg shadow-lg overflow-hidden h-screen flex flex-col">
+        <!-- Header Section -->
+        <div id="header" class="flex items-center justify-between p-4 border-b">
+            <div id="logo-section" class="flex items-center space-x-2">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." alt="Logo" class="w-8 h-8">
+                <h2 class="text-xl font-semibold text-gray-800">Chat with Us</h2>
+            </div>
+            <!-- Replace cross icon with trash bin icon -->
+            <button id="delete-btn" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                <i class="fas fa-trash-alt text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="flex-grow space-y-4 overflow-y-auto p-2 bg-gray-50 rounded-lg"></div>
+
+        <!-- Input and Send Button -->
+        <div class="flex items-center space-x-4 p-4 border-t bg-white">
+            <input type="text" id="user-input" style="border:2px solid black" placeholder="Type a message..." class="flex-grow p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+            <button id="send-btn" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Confirmation -->
+<div id="delete-modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-1/2 md:w-1/3 lg:w-1/4 text-center">
+        <h3 class="text-lg font-semibold text-gray-800">Warning</h3>
+        <p class="text-sm text-gray-600 mt-2">Are you sure you want to delete all your chat messages? This action cannot be undone.</p>
+        <div class="flex justify-around mt-4">
+            <button id="cancel-btn" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none">Cancel</button>
+            <button id="confirm-btn" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none">OK</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Map Location -->
+<div id="map-modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 sm:w-1/2 md:w-1/3 lg:w-1/4 text-center">
+        <h3 class="text-lg font-semibold text-gray-800">Shop Location</h3>
+        <p class="text-sm text-gray-600 mt-2">Here is the map showing our shop location:</p>
+        <div class="mt-4">
+            <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <button id="close-map-btn" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none mt-4">Close</button>
+    </div>
+</div>
+
+<script>
+// Chat UI Management using JavaScript
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Show the chat container when the page loads
+    document.getElementById("chat-container").classList.remove("hidden");
+
+    // Load messages from localStorage and display them
+    function loadMessages() {
+        const chatMessages = document.getElementById("chat-messages");
+        const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+
+        messages.forEach(msg => {
+            addMessage(msg.message, msg.sender);
+        });
+    }
+
+    // Add message to chat window
+    function addMessage(message, sender) {
+        const chatMessages = document.getElementById("chat-messages");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("chat-message", sender);
+
+        if (sender === 'bot') {
+            messageDiv.innerHTML = ` 
+                <div class="flex items-start space-x-2">
+                    <div class="bg-gray-300 text-black p-2 rounded-lg">${message}</div>
+                </div>
+            `;
+        } else {
+            messageDiv.innerHTML = ` 
+                <div class="flex justify-end space-x-2">
+                    <div class="bg-blue-500 text-white p-2 rounded-lg">${message}</div>
+                </div>
+            `;
+        }
+
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Save message to localStorage
+    function saveMessage(message, sender) {
+        const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+        messages.push({ message, sender });
+        localStorage.setItem("chatMessages", JSON.stringify(messages));
+    }
+
+    // Simulate bot response
+    function simulateBotResponse() {
+        setTimeout(() => {
+            const botMessage = ` 
+                <p>Hello, welcome to Golden Tree Garments. Please choose your option:</p>
+                <div class="space-y-2 mt-2">
+                    <div class="flex justify-start space-x-2">
+                        <span class="font-semibold">1.</span> <span>What is your address?</span>
+                    </div>
+                    <div class="flex justify-start space-x-2">
+                        <span class="font-semibold">2.</span> <span>What are your shop timings?</span>
+                    </div>
+                    <div class="flex justify-start space-x-2">
+                        <span class="font-semibold">3.</span> <span>What is your shop location?</span>
+                    </div>
+                    <div class="flex justify-start space-x-2">
+                        <span class="font-semibold">4.</span> <span>What is your closing Day?</span>
+                    </div>
+                    <div class="flex justify-start space-x-2">
+                        <span class="font-semibold">5.</span> <span>What is your order process?</span>
+                    </div>
+                </div>
+                <p class="mt-2 text-sm text-gray-600">Please type the number of the option you'd like to choose.</p>
+            `;
+            addMessage(botMessage, "bot");
+            saveMessage(botMessage, "bot");
+        }, 1000);
+    }
+
+    // Handle selection options
+    function handleSelection(option) {
+        let responseMessage = '';
+
+        switch(option) {
+            case '1':
+                responseMessage = "Our address: Golden Tree Garments, Plot No - 447, Jheel Chowk, Geeta Colony, Delhi - 110031";
+                break;
+            case '2':
+                responseMessage = 'Our timings are Monday to Saturday, 9 AM to 8 PM.';
+                break;
+            case '3':
+                responseMessage = 'Click on the map icon to see our location.';
+                responseMessage += `<div class="mt-2 flex justify-start items-center"><i class="fas fa-map-marker-alt text-red-500 cursor-pointer" id="map-icon">Show in Map</i></div>`;
+                break;
+            case '4':
+                responseMessage = 'We are open 7 Days in a week';
+                break;
+            case '5':
+                responseMessage = 'For orders, please follow the process on our website, or contact us at <a href="tel:+918595274234" class="text-blue-500">8595274234</a>';
+                break;
+            default:
+                responseMessage = 'Please choose a valid option: 1, 2, 3, 4, or 5.';
+        }
+
+        addMessage(responseMessage, 'bot');
+        saveMessage(responseMessage, 'bot');
+    }
+
+    function sendMessage() {
+        let userInput = document.getElementById("user-input").value.trim();
+        const userInputLower = userInput.toLowerCase();  // Standardize to lowercase for comparison
+    
+        if (userInput !== "") {
+            addMessage(userInput, "user");
+            saveMessage(userInput, "user");
+    
+            // Check if the user's input includes specific keywords like 'timing' or 'timings' (case insensitive)
+            if (userInputLower.includes("timing") || userInputLower.includes("timings")) {
+                handleSelection('2');  // Respond with shop timings
+            } else if (userInputLower.includes("location") || userInputLower.includes("address") || userInputLower.includes("map")) {
+                // If the user asks about the location (case insensitive)
+                let locationMessage = "Our location: Golden Tree, 447, Jheel, Chowk, Geeta Colony Rd, Delhi, 110031";
+                addMessage(locationMessage, "bot");
+                saveMessage(locationMessage, "bot");
+            } else if (userInputLower.includes("email")) {
+                // If the user asks about email (case insensitive)
+                let emailMessage = `
+                    For more information, you can reach us at: 
+                    <a href="mailto:golden4tree@gmail.com" class="text-blue-500">golden4tree@gmail.com</a>
+                `;
+                addMessage(emailMessage, "bot");
+                saveMessage(emailMessage, "bot");
+            } else if (userInputLower.includes("number") || userInputLower.includes("phone") || userInputLower.includes("call")) {
+                // If the user asks about the phone number (case insensitive)
+                let phoneMessage = `
+                    Or call us at: 
+                    <a href="tel:+919310480772" class="text-blue-500">+91 93104 80772</a>
+                `;
+                addMessage(phoneMessage, "bot");
+                saveMessage(phoneMessage, "bot");
+            } else if (userInputLower.includes("facebook")) {
+                // If the user asks about the Facebook page (case insensitive)
+                let facebookMessage = `
+                    Visit our Facebook page: 
+                    <a href="https://www.facebook.com/GoldenTreeGarments/" target="_blank" class="text-blue-500">Golden Tree Garments</a>
+                `;
+                addMessage(facebookMessage, "bot");
+                saveMessage(facebookMessage, "bot");
+            } else if (userInputLower.includes("order") || userInputLower.includes("orders")) {
+                // If the user asks about orders (case insensitive)
+                let orderMessage = `
+                    For orders, please follow the process on our website, or contact us at: 
+                    <a href="tel:+918595274234" class="text-blue-500">+91 85952 74234</a>
+                `;
+                addMessage(orderMessage, "bot");
+                saveMessage(orderMessage, "bot");
+            } else if (userInput === "1" || userInput === "2" || userInput === "3" || userInput === "4" || userInput === "5") {
+                handleSelection(userInput);  // Handle selection based on number input
+            } else {
+                simulateBotResponse();  // Simulate a bot response if no specific option is matched
+            }
+    
+            document.getElementById("user-input").value = '';  // Clear the input field
+        }
+    }
+    
+    
+    
+    
+
+    // Send message on "Enter" key
+    document.getElementById("user-input").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Send message on button click
+    document.getElementById("send-btn").addEventListener("click", sendMessage);
+
+    // Show delete modal
+    document.getElementById("delete-btn").addEventListener("click", function() {
+        document.getElementById("delete-modal").classList.remove("hidden");
+    });
+
+    // Cancel delete
+    document.getElementById("cancel-btn").addEventListener("click", function() {
+        document.getElementById("delete-modal").classList.add("hidden");
+    });
+
+    // Confirm delete
+    document.getElementById("confirm-btn").addEventListener("click", function() {
+        document.getElementById("chat-messages").innerHTML = '';
+        localStorage.removeItem("chatMessages");
+        document.getElementById("delete-modal").classList.add("hidden");
+    });
+
+    // Show map modal
+    document.getElementById("chat-messages").addEventListener("click", function(event) {
+        if (event.target && event.target.id === "map-icon") {
+            document.getElementById("map-modal").classList.remove("hidden");
+        }
+    });
+
+    // Close map modal
+    document.getElementById("close-map-btn").addEventListener("click", function() {
+        document.getElementById("map-modal").classList.add("hidden");
+    });
+
+    // Load previous messages when the page loads
+    loadMessages();
+});
+
+
+
+</script>
+</body>
+</html>
