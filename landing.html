@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Golden Tree Garments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.3s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div class="w-full min-h-screen p-6 sm:p-10 md:p-16 bg-white">
+
+    <header class="w-full bg-white border border-gray-200 shadow-md rounded-xl p-6 sm:p-10 mt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h1 class="text-4xl font-extrabold text-gray-900">Golden Tree Garments</h1>
+        <span class="flex items-center bg-blue-100 text-blue-700 px-3 py-1 text-sm font-medium rounded-full">
+          <svg class="w-5 h-5 mr-1 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Verified
+        </span>
+      </div>
+
+      <p class="text-lg text-gray-600 mt-2">
+        <strong>Men’s Clothing Shop</strong> — Coat Pant, Blazer For Men
+      </p>
+
+      <div class="mt-6 space-y-2 text-base">
+        <p><span class="font-semibold">Type:</span> Clothing Store</p>
+        <p><span class="font-semibold">Location:</span> Delhi</p>
+        <p><span class="font-semibold">Status:</span> 
+          <span id="storeStatus" class="font-semibold">Checking...</span>
+        </p>
+        <p class="flex items-center">
+          <span class="font-semibold">Rating:</span>
+          <span class="ml-2 text-yellow-400 text-xl">★★★★☆</span>
+          <span class="ml-2 text-gray-500">(4.4 based on 1641 reviews)</span>
+        </p>
+      </div>
+    </header>
+
+    <!-- About Section (Amazing Card) -->
+    <div class="mt-10 bg-white shadow-lg rounded-lg p-8">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">About Golden Tree Garments</h2>
+      <p class="text-lg text-gray-700 mb-4">
+        Golden Tree is the bestest and trustworthy brand for everyone, offering a wide range of Blazers, Coat Pant & Sherwani, latest designs, superior quality, fine collection, different colors, patterns & textures. 🛍️🏷️ Our brand provides you with coat pant, blazers, two-piece suits, three-piece suits, sherwani, kurta pajama, indo-western, shirts, jeans, and more. We have all the trendy men's fashion 🤩 — essential pieces of garments in every man's wardrobe. 🧑🏻‍💼
+      </p>
+      <p class="text-lg text-gray-700 mb-4">
+        We deal in wholesale and retail purchasing, with reasonable prices and effective and timely delivery 🚚 🤝🛍️🛒🔖
+      </p>
+    </div>
+
+    <hr class="my-8 border-t-2 border-gray-200">
+    {% load static %}
+    <div class="mt-10">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8">Our Best Quality Garments</h2>
+
+      <div class="space-y-12">
+        <!-- 1st Product - Image Left -->
+        <div class="flex flex-col sm:flex-row items-center gap-6">
+          <img src="{% static 'img/blue_2pcs.jpg' %}" alt="2-Piece Suit" class="w-full sm:w-1/2 lg:w-1/3 h-auto object-cover rounded-lg shadow-md">
+          <div class="text-center sm:text-left">
+            <p class="text-xl font-semibold text-gray-800 mt-4">2-Piece Suit</p>
+            <p class="text-gray-700 mb-2">Our 2-Piece Suits are the epitome of classic sophistication and modern style. Made from high-quality fabrics, these suits are perfect for any formal event or business occasion. With a tailored fit and a variety of colors and styles, you'll always look sharp and polished.</p>
+            <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- 2nd Product - Image Right -->
+        <div class="flex flex-col sm:flex-row-reverse items-center gap-6">
+          <img src="{% static 'img/blue_3pcs.jpg' %}" alt="3-Piece Suit" class="w-full sm:w-1/2 lg:w-1/3 h-auto object-cover rounded-lg shadow-md">
+          <div class="text-center sm:text-right">
+            <p class="text-xl font-semibold text-gray-800 mt-4">3-Piece Suit</p>
+            <p class="text-gray-700 mb-2">Make a lasting impression with our elegant 3-Piece Suits. Whether you're attending a formal meeting or a wedding, this suit provides a sharp, refined look. The three-piece set includes a vest, offering extra flair, and is tailored for comfort while ensuring you look your best.</p>
+            <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- 3rd Product - Image Left -->
+        <div class="flex flex-col sm:flex-row items-center gap-6">
+          <img src="{% static 'img/sherwani.jpg' %}" alt="Sherwani" class="w-full sm:w-1/2 lg:w-1/3 h-auto object-cover rounded-lg shadow-md">
+          <div class="text-center sm:text-left">
+            <p class="text-xl font-semibold text-gray-800 mt-4 sm:mt-0">Sherwani</p>
+            <p class="text-gray-700 mb-2">Our Sherwani collection is designed to bring out your royal side. Tailored to perfection, each piece is crafted with attention to intricate details and fine fabrics, making you the center of attention. Perfect for weddings and other grand events, our Sherwanis make you feel like royalty on your special day.</p>
+            <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- 4th Product - Image Right -->
+      
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <!-- Contact Info Section -->
+    <div class="mt-10">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Contact Us</h2>
+        
+        <!-- Phone -->
+        <div class="flex items-center space-x-4 mb-4">
+          <i class="fas fa-phone-alt text-gray-500 w-6 h-6"></i> <!-- Font Awesome phone icon -->
+          <p class="text-lg text-gray-700">Phone: <a href="tel:+919310480772" class="font-semibold text-blue-700">093104 80772</a></p>
+
+        </div>
+  
+        <!-- Directions -->
+        <div class="flex items-center space-x-4 mb-4">
+          <i class="fas fa-map-marker-alt text-gray-500 w-6 h-6"></i> <!-- Font Awesome location icon -->
+          <p class="text-lg text-gray-700">Location : <span class="font-semibold">Golden Tree, 447, Jheel, Chowk, Geeta Colony Road, Delhi, 110031, India</span> </p>
+        </div>
+
+      <hr class="my-8 border-t-2 border-gray-200">
+
+      <!-- Store Hours Section -->
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">Timing Hours</h2>
+
+      <hr>
+      <div class="space-y-2">
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Monday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+        <hr class="border-t-2 border-gray-200">
+        
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Tuesday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+        <hr class="border-t-2 border-gray-200">
+        
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Wednesday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+        <hr class="border-t-2 border-gray-200">
+        
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Thursday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+        <hr class="border-t-2 border-gray-200">
+        
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Friday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+        <hr class="border-t-2 border-gray-200">
+        
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Saturday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+        <hr class="border-t-2 border-gray-200">
+        
+        <div class="flex items-center">
+          <span class="w-1/3 font-semibold text-lg">Sunday</span>
+          <span class="w-2/3">9:00 AM – 8:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Floating Chatbot Button -->
+<div onclick="toggleChatWindow()" 
+class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-green-500 to-green-700 text-white rounded-full shadow-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-50">
+  <i class="fas fa-robot text-2xl"></i>
+</div>
+
+<!-- Chat Window -->
+<div id="chatWindow" style="display: none;" 
+class="fixed bottom-24 right-6 w-80 h-[460px] bg-white rounded-xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden z-50 animate-fade-in-up">
+  <!-- Header -->
+  <div class="bg-green-600 text-white text-center font-semibold py-3 text-lg flex justify-between items-center px-3">
+    <span>Chat with Us</span>
+    
+    <!-- Clear Chat Button -->
+    <button id="clearChatBtn" class="text-white bg-red-600 hover:bg-red-700 rounded px-2 py-1 text-xs ml-auto" onclick="clearChat()">
+      Clear Chat
+    </button>
+</div>
+
+
+  <!-- Chat Body -->
+  <div id="chatBody" class="flex-1 overflow-y-auto px-4 py-3 space-y-3 bg-gray-50">
+    <!-- Will be filled via JS -->
+  </div>
+
+  <!-- Footer -->
+  <div class="flex items-center gap-2 px-3 py-2 bg-gray-100 border-t border-gray-200">
+    <input id="chatInput" type="text" placeholder="Type your message..."
+      class="flex-1 px-3 py-2 rounded-md border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-green-400" />
+    <button onclick="sendMessage()"
+      class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+      Send
+    </button>
+  </div>
+</div>
+
+<script>
+  const chatBody = document.getElementById("chatBody");
+  const input = document.getElementById("chatInput");
+  const chatKey = "goldenTreeChatHistory";
+  const nameKey = "goldenTreeUsername";
+
+  function toggleChatWindow() {
+    const chatWindow = document.getElementById("chatWindow");
+    if (chatWindow.style.display === "none" || chatWindow.style.display === "") {
+      chatWindow.style.display = "flex";
+      loadChat();
+    } else {
+      chatWindow.style.display = "none";
+    }
+  }
+
+  function appendMessage(content, sender = "bot") {
+    const div = document.createElement("div");
+    div.className = sender === "user"
+      ? "bg-green-600 text-white rounded-xl px-4 py-2 max-w-[75%] w-fit text-sm self-end ml-auto shadow-md"
+      : "bg-green-100 text-green-800 rounded-xl px-4 py-2 max-w-[75%] w-fit text-sm shadow-sm";
+    div.innerHTML = content;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function saveToLocalStorage(entry) {
+    let history = JSON.parse(localStorage.getItem(chatKey)) || [];
+    history.push(entry);
+    localStorage.setItem(chatKey, JSON.stringify(history));
+  }
+
+  function handleSelection(option) {
+    let responseMessage = '';
+
+    switch(option) {
+      case '1':
+        responseMessage = "Our address: Golden Tree Garments, Plot No - 447, Jheel Chowk, Geeta Colony, Delhi - 110031";
+        break;
+      case '2':
+        responseMessage = 'We are open 7 days in the week between 9 AM to 8 PM. You can visit us';
+        break;
+      case '3':
+        responseMessage = 'Golden Tree Garments, Plot No - 447, Jheel Chowk, Geeta Colony, Delhi - 110031';
+        responseMessage += ``;
+        break;
+      case '4':
+        responseMessage = 'We are open 7 Days in a week';
+        break;
+      case '5':
+        responseMessage = 'For orders, please follow the process on our website, or contact us at <a href="tel:+918595274234" class="text-blue-500">8595274234</a>';
+        break;
+      case '6':
+        responseMessage = `Visit our product page to explore a wide variety of items:
+            <a href="/product/" target="_blank" class="text-blue-500">Explore Products</a>`;
+        break;
+      default:
+        responseMessage = 'Please choose a valid option: 1, 2, 3, 4, or 5.';
+    }
+
+    appendMessage(responseMessage, 'bot');
+    saveToLocalStorage({ sender: 'bot', message: responseMessage });
+  }
+
+  function sendMessage() {
+    let userInput = input.value.trim();
+    const userInputLower = userInput.toLowerCase();  // Standardize to lowercase for comparison
+
+    if (userInput !== "") {
+        appendMessage(userInput, "user");
+        saveToLocalStorage({ sender: "user", message: userInput });
+
+        // Check for specific keywords or numbers and trigger the respective response
+        if (userInputLower.includes("timing") || userInputLower.includes("open")) {
+            handleSelection('2');
+        } else if (userInputLower.includes("location") || userInputLower.includes("address") || userInputLower.includes("map")) {
+            let locationMessage = "Our location: Golden Tree, 447, Jheel, Chowk, Geeta Colony Rd, Delhi, 110031";
+            appendMessage(locationMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: locationMessage });
+        } else if (userInputLower.includes("email")) {
+            let emailMessage = `For more information, you can reach us at:
+                <a href="mailto:golden4tree@gmail.com" class="text-blue-500">golden4tree@gmail.com</a>`;
+            appendMessage(emailMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: emailMessage });
+        } else if (userInputLower.includes("number") || userInputLower.includes("phone") || userInputLower.includes("call")) {
+            let phoneMessage = `Or call us at:
+                <a href="tel:+919310480772" class="text-blue-500">+91 93104 80772</a>`;
+            appendMessage(phoneMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: phoneMessage });
+        } else if (userInputLower.includes("product") || userInputLower.includes("lehenga") || userInputLower.includes("coat") || userInputLower.includes("men") || userInputLower.includes("women") || userInputLower.includes("kids") || userInputLower.includes("blazer") ) {
+            let productMessage = `Visit our product page to explore a wide variety of items:
+                <a href="/product/" target="_blank" class="text-blue-500">Explore Products</a>`;
+            appendMessage(productMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: productMessage });
+        } else if (userInput === "1" || userInput === "2" || userInput === "3" || userInput === "4" || userInput === "5" || userInput === "6") {
+            handleSelection(userInput);  // Handle numerical input
+        } else if (userInputLower.includes("facebook")) {
+            // If the user asks about the Facebook page
+            let facebookMessage = `
+                Visit our Facebook page:
+                <a href="https://www.facebook.com/GoldenTreeGarments/" target="_blank" class="text-blue-500">Golden Tree Garments</a>
+            `;
+            appendMessage(facebookMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: facebookMessage });
+        } else if (userInputLower.includes("order") || userInputLower.includes("orders")) {
+            // If the user asks about orders
+            let orderMessage = `
+                For orders, please follow the process on our website, or contact us at:
+                <a href="tel:+918595274234" class="text-blue-500">+91 85952 74234</a>
+            `;
+            appendMessage(orderMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: orderMessage });
+        } else if (userInputLower.includes("instagram") || userInputLower.includes("insta") || userInputLower.includes("social media")) {
+            // If the user asks about Instagram
+            let instagramMessage = `
+                Follow us on Instagram:
+                <a href="https://www.instagram.com/goldentree_garments/?hl=en" target="_blank" class="text-blue-500">Golden Tree Garments</a>
+            `;
+            appendMessage(instagramMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: instagramMessage });
+        } else if (userInputLower.includes("channel") || userInputLower.includes("youtube") || userInputLower.includes("video")) {
+            // If the user asks about YouTube channel
+            let youtubeMessage = `
+                Visit our YouTube channel:
+                <a href="https://www.youtube.com/@GoldenTreeGarments" target="_blank" class="text-blue-500">Golden Tree Garments</a>
+            `;
+            appendMessage(youtubeMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: youtubeMessage });
+        } else if (userInputLower.includes("golden") || userInputLower.includes("tree") || userInputLower.includes("garments") || userInputLower.includes("history")) {
+            // If the user mentions "golden", "tree", or "garments"
+            let brandMessage = `
+                Golden Tree is the bestest and trustworthy brand for everyone, offering a wide range of Blazers, Coat Pant & Sherwani, latest designs, superior quality, fine collection, different colors, patterns & textures. 🛍️🏷️ Our brand provides you with coat pant, blazers, two-piece suits, three-piece suits, sherwani, kurta pajama, indo-western, shirts, jeans, and more. We have all the trendy men's fashion 🤩 — essential pieces of garments in every man's wardrobe. 🧑🏻‍💼
+
+                We deal in wholesale and retail purchasing, with reasonable prices and effective and timely delivery.
+            `;
+            appendMessage(brandMessage, "bot");
+            saveToLocalStorage({ sender: "bot", message: brandMessage });
+        } else {
+            simulateBotResponse();  // Call the default message
+        }
+
+        input.value = '';  // Clear the input field
+    }
+}
+
+
+  // Default response when the bot doesn't understand the user input
+  function simulateBotResponse() {
+    setTimeout(() => {
+      const botMessage = `
+        <p>Hello, welcome to Golden Tree Garments. Please choose your option:</p>
+        <div class="space-y-2 mt-2">
+          <div class="flex justify-start space-x-2">
+            <span class="font-semibold">1.</span> <span>What is your address?</span>
+          </div>
+          <div class="flex justify-start space-x-2">
+            <span class="font-semibold">2.</span> <span>What are your shop timings?</span>
+          </div>
+          <div class="flex justify-start space-x-2">
+            <span class="font-semibold">3.</span> <span>What is your shop location?</span>
+          </div>
+          <div class="flex justify-start space-x-2">
+            <span class="font-semibold">4.</span> <span>What is your closing Day?</span>
+          </div>
+          <div class="flex justify-start space-x-2">
+            <span class="font-semibold">5.</span> <span>What is your order process?</span>
+          </div>
+          <div class="flex justify-start space-x-2">
+            <span class="font-semibold">6.</span> <span>See Product Demo ?</span>
+          </div>
+        </div>
+        <p class="mt-2 text-sm text-gray-600">Please type the number of the option you'd like to choose.</p>
+      `;
+      appendMessage(botMessage, "bot");
+      saveToLocalStorage({ sender: "bot", message: botMessage });
+    }, 1000);
+  }
+
+  // Detect when the user presses Enter to send the message
+  input.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();  // Prevent form submission (if inside a form)
+      sendMessage();  // Trigger message send
+    }
+  });
+
+  function loadChat() {
+    chatBody.innerHTML = "";
+    const history = JSON.parse(localStorage.getItem(chatKey)) || [];
+    const username = localStorage.getItem(nameKey);
+
+    if (history.length === 0) {
+      simulateBotResponse();  // Call simulateBotResponse if no history is found
+    } else {
+      history.forEach(msg => appendMessage(msg.message, msg.sender));
+    }
+  }
+
+
+  function clearChat() {
+    // Select the chat body container
+    const chatBody = document.getElementById("chatBody");
+    
+    // Clear the content of the chat body
+    chatBody.innerHTML = "";
+    
+    // Optionally, if you want to also clear chat history stored in localStorage, you can add:
+    localStorage.removeItem("goldenTreeChatHistory");
+    
+    // Optional: add a message when the chat is cleared
+    const clearMessage = "Chat has been cleared!";
+    const div = document.createElement("div");
+    div.className = "bg-gray-200 text-gray-700 rounded-xl px-4 py-2 text-sm text-center shadow-sm";
+    div.textContent = clearMessage;
+    chatBody.appendChild(div);
+  }
+
+</script>
+
+  <script>
+    function checkStoreStatus() {
+      const now = new Date();
+      const hours = now.getHours();
+      const statusElement = document.getElementById("storeStatus");
+
+      if (hours >= 9 && hours < 20) {
+        statusElement.textContent = "Open now";
+        statusElement.classList.add("text-green-600");
+        statusElement.classList.remove("text-red-600");
+      } else {
+        statusElement.textContent = "Closed now";
+        statusElement.classList.add("text-red-600");
+        statusElement.classList.remove("text-green-600");
+      }
+    }
+
+    // Run on page load
+    checkStoreStatus();
+  </script>
+
+</body>
+</html>
