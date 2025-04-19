@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krishna Project Gallery Carousel</title>
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+  <style>
+    .swiper {
+      width: 100%;
+      height: auto;
+    }
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .swiper-slide img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+    .chat-preview {
+      height: 500px;
+      overflow: auto;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+    }
+
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.875rem;
+      color: #6b7280;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+  <h1 class="text-3xl font-bold text-purple-700 mb-6 text-center">🎨 Landing Page Gallery</h1>
+
+  <!-- Swiper Carousel -->
+  <div class="w-full max-w-6xl">
+    <div class="swiper rounded-lg shadow-lg">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <img src="/img/header_chatbot.png" alt="Project 1">
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <img src="/img/footer_chatbot.png" alt="Project 2">
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <img src="/img/chatbot_body.png" alt="Project 3">
+        </div>
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <img src="/img/main_chatbot.png" alt="Project 4">
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="swiper-button-next text-purple-700"></div>
+      <div class="swiper-button-prev text-purple-700"></div>
+
+      <!-- Pagination Dots -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto p-6">
+    <!-- Title -->
+    <h1 class="text-4xl font-bold text-purple-700 text-center mb-8">✨ Golden Tree Chatbot Showcase</h1>
+
+    <!-- Grid layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Left: Explanation Box -->
+      <div class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+        <h2 class="text-2xl font-semibold text-blue-600 mb-4">📌 How It Works:</h2>
+        
+        <ul class="space-y-3 text-gray-700 text-sm leading-relaxed">
+          <li><strong>✅ Auto greeting:</strong> Bot greets and shows numbered options.</li>
+          <li><strong>📝 User Input:</strong> Type or click “Send” or press Enter.</li>
+          <li><strong>🤖 Bot Replies:</strong> Based on text or option selected (e.g., address, timings).</li>
+          <li><strong>📍 Map Integration:</strong> Ask for location, click "Show in Map" to open Google Map modal.</li>
+          <li><strong>🗑️ Delete Feature:</strong> Trash icon opens a confirmation modal to clear messages (with localStorage).</li>
+          <li><strong>📂 Storage:</strong> Conversations are stored and auto-loaded on refresh.</li>
+          <li><strong>Greeting Automation:</strong> Welcomes users with clear option buttons.</li>
+          <li><strong>Input Flexibility:</strong> Users can type or use option buttons for fast replies.</li>
+          <li><strong>Delete Confirmation:</strong> Clicking the trash icon shows a confirm modal before clearing data.</li>
+          <li><strong>Google Maps Integration:</strong> Clicking “Show in Map” opens location modal with embedded map.</li>
+          <li><strong>Mobile Responsive:</strong> Tailwind CSS ensures smooth UX on all screen sizes.</li>
+          <li><strong>Clean UI with Icons:</strong> Uses intuitive icons for actions (delete, send, etc.).</li>
+        </ul>
+
+        <p class="mt-6 text-sm text-gray-500 italic">Note: You can expand this with WhatsApp integration, product carousel, or AI assistant too.</p>
+      </div>
+
+      <!-- Right: Embedded Chatbot UI -->
+     <!-- Right: Embedded Chatbot UI -->
+<!-- Right: Embedded Chatbot UI -->
+<div>
+  <h2 class="text-xl font-semibold text-gray-800 mb-2">🎬 Preview</h2>
+  <div class="bg-white rounded-lg shadow-lg p-2" style="height: 600px;">
+    <iframe 
+      src="https://krishnadua.github.io/golden_tree_garment_chatbots/landing.html" 
+      width="100%" 
+      height="100%" 
+      style="border: none;" 
+      title="Golden Tree Chatbot"
+    ></iframe>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+
+  <!-- Signature -->
+  <div class="watermark">~ Krishna Dua</div>
+
+  <!-- Developer Bio Section -->
+<section class="max-w-5xl mx-auto my-12 px-4">
+  <div class="bg-white shadow-xl rounded-xl overflow-hidden flex flex-col md:flex-row">
+    
+    <!-- Left: Profile with Gradient & Image -->
+    <div class="bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex flex-col items-center justify-center p-8 md:w-1/3">
+      <!-- Profile Image -->
+      <img 
+        src="https://media.licdn.com/dms/image/v2/D4D03AQE0pccvwEtewQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1696687759910?e=2147483647&v=beta&t=WIlV14FFlTGo-pvsPo14HrhbL_uMoZGogWKE_hUidmo" 
+        alt="Krishna Dua" 
+        class="w-28 h-28 rounded-full border-4 border-white shadow-lg mb-4"
+      />
+      <!-- Name and Role -->
+      <div class="text-center">
+        <h2 class="text-2xl font-bold">👋 Hi, I'm</h2>
+        <p class="text-3xl font-extrabold mt-1">Krishna Dua</p>
+        <p class="text-sm mt-2 italic">Multifaceted Python & Web Developer</p>
+      </div>
+    </div>
+
+    <!-- Right: Info Panel -->
+    <div class="p-8 md:w-2/3 space-y-4">
+      <h3 class="text-2xl font-semibold text-gray-800">🚀 About Me</h3>
+      <p class="text-gray-700 leading-relaxed text-sm">
+        I'm a passionate developer with a solid foundation in <strong>Python</strong> and a diverse skill set across 
+        <strong>full-stack development</strong>, <strong>data science</strong>, <strong>data analysis</strong>, and 
+        <strong>Flutter app development</strong>. I'm constantly striving to grow and eager to solve real-world problems through code.
+      </p>
+
+      <h4 class="text-lg font-semibold text-indigo-600">🎓 Education</h4>
+      <ul class="text-sm text-gray-700 space-y-1">
+        <li><strong>College:</strong> St. Andrews Institute of Technology and Management</li>
+        <li><strong>Degree:</strong> Bachelor of Computer Applications (BCA)</li>
+        <li><strong>Year:</strong> 2022 - 2025</li>
+        <li><strong>Current Percentage:</strong> 84%</li>
+      </ul>
+
+      <h4 class="text-lg font-semibold text-indigo-600">💼 Roles & Skills</h4>
+      <ul class="grid grid-cols-2 gap-2 text-sm text-gray-700 list-disc list-inside">
+        <li>Python Developer</li>
+        <li>Software Developer</li>
+        <li>Full Stack Web Developer</li>
+        <li>Flutter Developer</li>
+        <li>Data Analyst</li>
+        <li>API Integration</li>
+      </ul>
+
+      <p class="text-gray-600 text-sm italic mt-4">
+        I'm always ready to take on new challenges, build impactful solutions, and keep learning every day 💻✨
+      </p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Swiper Init -->
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      slidesPerView: 1,
+      spaceBetween: 20,
+      centeredSlides: true,
+    });
+  </script>
+
+</body>
+</html>
